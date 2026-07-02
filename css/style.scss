@@ -665,7 +665,7 @@ input[type=number] {
     background-size: 200% auto;
     background-position: 0 50%;
     pointer-events: none;
-    transition: background-position .6s linear, box-shadow .3s linear;
+    transition: background-position .6s linear, box-shadow .3s linear, opacity .3s linear;
   }
 
   & span {
@@ -699,7 +699,7 @@ input[type=number] {
     }
   }
 
-  &_icon+&_icon {
+  &_icon+&_icon { 
     margin-left: -10px;
   }
 
@@ -711,11 +711,28 @@ input[type=number] {
     padding-right: 0;
   }
 
+  &_noicon{
+    min-width: 1px;
+    width: 106px;
+    transition: width .3s linear, color .3s linear;
+    color: #a1a2a6;
+  }
+
+  &_noicon._active{
+    width: 140px;
+    color: #1f1f1f;
+  }
+
+  &_noicon::before{
+    opacity: .5;
+  }
+
   &._active::before {
     background-position: 50% 50%;
     box-shadow: 0 0 2px $neon-blue, 0 0 5px $neon-pink;
 
     animation: activePulse 2s linear infinite alternate;
+    opacity: 1;
   }
 }
 
