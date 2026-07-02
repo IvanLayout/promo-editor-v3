@@ -1,18 +1,14 @@
 function generateDynamicImgSrc(index) {
-  // 1. Пытаемся найти активную категорию
   const activeCategoryBtn = document.querySelector('.category-wrap__link._active')
 
-  // Если кнопка найдена — берем текст, если нет — по умолчанию 'finance'
   let category = 'finance'
   if (activeCategoryBtn) {
     category = activeCategoryBtn.textContent.trim().toLowerCase()
   }
 
-  // 2. Инпут с названием (например, abdc123)
   const rawName = document.getElementById('fileName').value.trim() || 'PROMO'
   const promoName = rawName.replace(/\s+/g, '').toLowerCase()
 
-  // 3. Регулярки для букв и цифр
   const prefixMatch = promoName.match(/[a-z]+/)
   const suffixMatch = promoName.match(/\d+/)
 
@@ -120,11 +116,11 @@ function replaceAllEmojisAndSymbolsExcludingHTML(htmlContent) {
 function processStyles(htmlContent) {
   htmlContent = htmlContent.replace(/<b[^>]*>/gi, '').replace(/<\/b>/gi, '')
   // i and b and u
-  htmlContent = htmlContent.replace(/<span[^>]*style="[^"]*font-weight:\s*700[^"]*;[^"]*font-style:\s*italic[^"]*;[^"]*text-decoration-line:\s*underline[^"]*"[^>]*>(.*?)<\/span>/gi,
+  htmlContent = htmlContent.replace(/<span[^>]*style="[^"]*font-weight:\s*700[^"]*;[^"]*font-style:\s*italic[^"]*;[^"]*text-decoration:\s*underline[^"]*"[^>]*>(.*?)<\/span>/gi,
     '<em style="text-decoration: underline;font-weight: bold;">$1</em>')
 
   // i and u
-  htmlContent = htmlContent.replace(/<span[^>]*style="[^"]*font-style:\s*italic[^"]*;[^"]*text-decoration-line:\s*underline[^"]*"[^>]*>(.*?)<\/span>/gi,
+  htmlContent = htmlContent.replace(/<span[^>]*style="[^"]*font-style:\s*italic[^"]*;[^"]*text-decoration:\s*underline[^"]*"[^>]*>(.*?)<\/span>/gi,
     '<em style="text-decoration: underline;">$1</em>')
 
   // i and b
@@ -132,11 +128,11 @@ function processStyles(htmlContent) {
     '<b style="font-style: italic;">$1</b>')
 
   // b and u
-  htmlContent = htmlContent.replace(/<span[^>]*style="[^"]*font-weight:\s*700[^"]*;[^"]*text-decoration-line:\s*underline[^"]*"[^>]*>(.*?)<\/span>/gi,
+  htmlContent = htmlContent.replace(/<span[^>]*style="[^"]*font-weight:\s*700[^"]*;[^"]*text-decoration:\s*underline[^"]*"[^>]*>(.*?)<\/span>/gi,
     '<b style="text-decoration: underline;">$1</b>')
 
   // u
-  htmlContent = htmlContent.replace(/<span[^>]*style="[^"]*text-decoration-line:\s*underline[^"]*"[^>]*>(.*?)<\/span>/gi,
+  htmlContent = htmlContent.replace(/<span[^>]*style="[^"]*text-decoration:\s*underline[^"]*"[^>]*>(.*?)<\/span>/gi,
     '<u>$1</u>')
 
   // b
@@ -314,7 +310,7 @@ function wrapButtonHtml(htmlContent) {
                  
                   <table cellpadding="0" cellspacing="0" role="presentation">
                        <tr>
-                           <td height="51" align="center" style="border-radius: 10px;font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;line-height:1.5;text-align:center;font-weight: bold; color: #FFFFFF; padding: 3px 5px; background-color: #28b628;" bgcolor="#28b628">
+                           <td class="btn-edit-p" height="51" align="center" style="border-radius: 10px;font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;line-height:1.5;text-align:center;font-weight: bold; color: #FFFFFF; padding: 3px 5px; background-color: #28b628;" bgcolor="#28b628">
                                <a href="urlhere" target="_blank" style="font-weight: bold;text-decoration:none;color:#ffffff;padding: 9px 15px;display: block;font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;line-height:1.5;text-align:center;background-color: #28b628;border-radius: 10px;">
                                     ${content}           
                                </a>
@@ -433,7 +429,7 @@ function wrapSignatureImg(htmlContent) {
               <tr>
                 <td class="img-bg-block" align="left" style="padding-top: 14px; padding-bottom: 14px;">
                   <img alt="Signature" height="auto"
-                       src="https://storage.5th-elementagency.com/"
+                       src="sign_url"
                        style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:200px;max-width: 100%;font-size:13px;"
                        width="200"/>
                 </td>
@@ -446,11 +442,7 @@ function wrapSignatureImg(htmlContent) {
 }
 
 function addOneBr(htmlContent) {
-  return htmlContent.replace(/ю/gi, function (match, content) {
-    return `
-                    <br>
-        `
-  })
+  return htmlContent.replace(/ю/gi, '<br>')
 }
 
 function replaceTripleBrWithSingle(htmlContent) {
@@ -627,7 +619,7 @@ function wrapButtonMjml(htmlContent) {
                       <td align="center" style="font-size:0px;padding:10px 25px; word-break:break-word;">
                         <table cellpadding="0" cellspacing="0" role="presentation">
                           <tr>
-                              <td height="51" align="center" style="border-radius: 10px;font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;line-height:1.5;text-align:center;font-weight: bold; color: #FFFFFF; padding: 3px 5px; background-color: #28b628;" bgcolor="#28b628">
+                              <td class="btn-edit-p" height="51" align="center" style="border-radius: 10px;font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;line-height:1.5;text-align:center;font-weight: bold; color: #FFFFFF; padding: 3px 5px; background-color: #28b628;" bgcolor="#28b628">
                                   <a href="urlhere" target="_blank" style="font-weight: bold;text-decoration:none;color:#ffffff;padding: 9px 15px;display: block;font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;line-height:1.5;text-align:center;background-color: #28b628;border-radius: 10px;">
                                        ${content}           
                                   </a>
@@ -722,8 +714,8 @@ function wrapSignatureImgMjml(htmlContent) {
                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
                           <tbody>
                             <tr>
-                              <td style="width:180px;">
-                                <img alt="Signature" src="https://storage.5th-elementagency.com/" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="180" height="auto" />
+                              <td style="width:200px;">
+                                <img alt="Signature" src="sign_url" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="200" height="auto" />
                               </td>
                             </tr>
                           </tbody>
@@ -802,46 +794,40 @@ function removeStylesFromLists(htmlContent) {
 }
 
 function wrapTextInSpan(htmlContent) {
-  htmlContent = htmlContent.replace(/<img[^>]*src="([^"]*)"[^>]*>/gi, function (match, src) {
-
+  // Обработка картинок внутри текста
+  let processed = htmlContent.replace(/<img[^>]*src="([^"]*)"[^>]*>/gi, function (match, src) {
     const dynamicSrc = generateDynamicImgSrc(window.currentImgIdx++)
-
-    return `            </span>
-                       </td>
-                   </tr>
-                   <tr>
-                       <td class="img-bg-block" align="center" style="padding-top: 14px; padding-bottom: 14px;">
-                           <a href="urlhere" target="_blank">
-                               <img alt="click" height="auto"
+    return `</span></td></tr>
+            <tr><td class="img-bg-block" align="center" style="padding-top: 14px; padding-bottom: 14px;">
+                <a href="urlhere" target="_blank">
+                    <img alt="video" height="auto"
                                     src="${dynamicSrc}"
                                     style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;max-width: 560px;font-size:13px;"
                                     width="560"/>
-                           </a>
-                       </td>
-                    </tr>
-                    <tr>
-                       <td style="font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;font-weight:normal;line-height:1.5;text-align:left;color:#000000;padding-top: 14px; padding-bottom: 14px;">
+                </a>
+            </td></tr>
+            <tr><td style="font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;font-weight:normal;line-height:1.5;text-align:left;color:#000000;padding-top: 14px; padding-bottom: 14px;">
                             <span style="font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;font-weight:normal;line-height:1.5;text-align:left;color:#000000;">`
   })
 
-  // Обертка всей таблицы остается без изменений
-  htmlContent = `<tr>
-                      <td style="font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;font-weight:normal;line-height:1.5;text-align:left;color:#000000;padding-top: 14px; padding-bottom: 14px;">
-                                <span style="font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;font-weight:normal;line-height:1.5;text-align:left;color:#000000;">
-                                    ${htmlContent}
-                                </span>
-                      </td>
-                    </tr>`
-
-  return htmlContent
+  return `<tr>
+    <td style="font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;font-weight:normal;line-height:1.5;text-align:left;color:#000000;padding-top: 14px; padding-bottom: 14px;">
+      <span style="font-family:'Roboto', Arial, Helvetica, sans-serif;font-size:18px;font-style:normal;font-weight:normal;line-height:1.5;text-align:left;color:#000000;">
+        ${processed}
+      </span>
+    </td>
+  </tr>`
 }
 
 function cleanEmptyHtmlTags(htmlContent) {
   htmlContent = htmlContent.replace(/&nbsp;/g, ' ')
   htmlContent = htmlContent.replace(/<b>\s*<\/b>/g, '')
   htmlContent = htmlContent.replace(/<li>\s*<\/li>/g, '')
+  htmlContent = htmlContent.replace(/<span[^>]*>(?!\s*ю\s*)[\s]*<\/span>/gi, '')
+  htmlContent = htmlContent.replace(/<br>\s*<\/span>/g, '</span>')
   htmlContent = htmlContent.replace(/<br>\s*<br>\s*<br>\s*<br>/g, '<br><br>')
   htmlContent = htmlContent.replace(/<br>\s*<br>\s*<br>/g, '<br><br>')
+  htmlContent = htmlContent.replace(/(?:\s*<br\s*\/?>\s*)+(?=<\/span>|(\s*<\/td>))/gi, '')
   htmlContent = htmlContent.replace(/(<span[^>]*>)\s*<br><br>/gi, '$1')
   htmlContent = htmlContent.replace(/<\/a>\s*<a[^>]*>/g, ' ')
   htmlContent = htmlContent.replace(/<pre>/g, '')
@@ -881,6 +867,9 @@ function cleanEmptyHtmlTags(htmlContent) {
   htmlContent = htmlContent.replace(/<div[^>]*>\s*<\/div>/g, '')
   htmlContent = htmlContent.replace(/<td[^>]*>\s*<\/td>/g, '')
   htmlContent = htmlContent.replace(/<tr[^>]*>\s*<\/tr>/g, '')
+  htmlContent = htmlContent.replace(/(<span[^>]*>)\s*(?:<br\s*\/?>|ю|\s)+/gi, '$1')
+  htmlContent = htmlContent.replace(/(<td[^>]*>)\s*(?:<br\s*\/?>|ю|\s)+/gi, '$1')
+
   return htmlContent
 }
 
@@ -912,9 +901,15 @@ function wrapContentInFullTableStructure(htmlContent) {
   return fullTableStructure
 }
 
+function fixSpansWithBr(htmlContent) {
+  return htmlContent.replace(/<span[^>]*>\s*<br\s*\/?>\s*<\/span>/gi, 'ю')
+}
+
 async function exportHTML() {
   window.currentImgIdx = 1
   let editorContent = document.getElementById('editor').innerHTML
+
+  editorContent = editorContent.replace(/<span[^>]*>\s*<br\s*\/?>\s*<\/span>/gi, 'ю')
   editorContent = italicLinks(editorContent)
   editorContent = linksStyles(editorContent)
   editorContent = replaceAllEmojisAndSymbolsExcludingHTML(editorContent)
@@ -935,15 +930,18 @@ async function exportHTML() {
   editorContent = wrapSignatureImg(editorContent)
   editorContent = wrapFooterBlock(editorContent)
   editorContent = wrapFooterCenterBlock(editorContent)
+  editorContent = editorContent.replace(/(?:ю|\s|<br\s*\/?>)+(?=\s*<\/span>)/gi, '')
+  editorContent = editorContent.replace(/(<span[^>]*>)\s*(?:ю|<br\s*\/?>|\s)+/gi, '$1')
   editorContent = cleanEmptyHtmlTags(editorContent)
   editorContent = wrapContentInFullTableStructure(editorContent)
   editorContent = addOneBr(editorContent)
   editorContent = replaceTripleBrWithSingle(editorContent)
+  editorContent = editorContent.replace(/<\/tr>\s*<br\s*\/?>/gi, '</tr>')
+  editorContent = editorContent.replace(/<\/td>\s*<br\s*\/?>/gi, '</td>')
+  editorContent = editorContent.replace(/<\/span>\s*<br\s*\/?>/gi, '</span>')
 
   const prettyHtml = await formatWithPrettier(editorContent)
-
   document.getElementById('output').value = prettyHtml
-
   return prettyHtml
 }
 
@@ -972,6 +970,17 @@ document.getElementById("downloadBtn").addEventListener("click", async function 
   }
 })
 
+document.getElementById("exportAll").addEventListener("click", async function () {
+  try {
+    await exportHTML()
+    await exportMJML()
+
+  } catch (error) {
+    console.error("Ошибка при экспорте или скачивании:", error)
+    alert("Что-то пошло не так при генерации файла.")
+  }
+})
+
 function wrapTextInMjmlTags(htmlContent) {
   htmlContent = htmlContent.replace(/<img[^>]*src="([^"]*)"[^>]*>/gi, function (match, src) {
 
@@ -987,7 +996,7 @@ function wrapTextInMjmlTags(htmlContent) {
                             <tr>
                               <td style="width:550px;">
                                 <a href="urlhere" target="_blank">
-                                  <img alt="click" src="${dynamicSrc}" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="550" height="auto" />
+                                  <img alt="video" src="${dynamicSrc}" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="550" height="auto" />
                                 </a>
                               </td>
                             </tr>
@@ -1046,6 +1055,8 @@ function wrapContentInFullMjmlTableStructure(htmlContent) {
 async function exportMJML() {
   window.currentImgIdx = 1
   let editorContent = document.getElementById('editor').innerHTML
+
+  editorContent = editorContent.replace(/<span[^>]*>\s*<br\s*\/?>\s*<\/span>/gi, 'ю')
   editorContent = italicLinks(editorContent)
   editorContent = linksStyles(editorContent)
   editorContent = replaceAllEmojisAndSymbolsExcludingHTML(editorContent)
@@ -1066,13 +1077,16 @@ async function exportMJML() {
   editorContent = wrapSignatureImgMjml(editorContent)
   editorContent = wrapFooterBlockMjml(editorContent)
   editorContent = wrapFooterCenterBlockMjml(editorContent)
+  editorContent = editorContent.replace(/(?:ю|\s|<br\s*\/?>)+(?=\s*<\/div>)/gi, '')
+  editorContent = editorContent.replace(/(<div[^>]*>)\s*(?:ю|<br\s*\/?>|\s)+/gi, '$1')
   editorContent = cleanEmptyHtmlTags(editorContent)
   editorContent = wrapContentInFullMjmlTableStructure(editorContent)
   editorContent = addOneBr(editorContent)
   editorContent = replaceTripleBrWithSingle(editorContent)
+  editorContent = editorContent.replace(/<\/div>\s*<br\s*\/?>/gi, '</div>')
+  editorContent = editorContent.replace(/<\/td>\s*<br\s*\/?>/gi, '</td>')
 
   const prettyMjml = await formatWithPrettier(editorContent)
-
   document.getElementById('mjmlOutput').value = prettyMjml
 
   return prettyMjml
@@ -1232,10 +1246,13 @@ async function toJpeg600(blob, bgColor = '#ffffff') {
 async function downloadImagesFolder() {
   logEl.textContent = ''
   const imgs = Array.from(editor.querySelectorAll('img'))
-  if (!imgs.length) return log('Немає <img> у редакторі.')
 
-  const bg = '#ffffff'
-  // const bg = bgPicker.value || '#ffffff'
+  // 1. Определяем категорию по активной кнопке
+  const activeCategoryBtn = document.querySelector('.category-wrap__link._active')
+  let categoryText = 'finance'
+  if (activeCategoryBtn) {
+    categoryText = activeCategoryBtn.textContent.trim().toLowerCase()
+  }
 
   const rawName = document.getElementById('fileName').value || 'PROMO'
   const promoName = rawName.replace(/\s+/g, '').toUpperCase()
@@ -1248,37 +1265,38 @@ async function downloadImagesFolder() {
     if (!src) continue
 
     const blob = await getBlobFromSrc(src)
-    if (!blob) {
-      log('— Пропущено (помилка завантаження): ' + src)
-      continue
-    }
+    if (!blob) continue
 
-    const { outBlob } = await toJpeg600(blob, bg)
+    // Сжатие до 600px
+    const { outBlob } = await toJpeg600(blob, '#ffffff')
 
+    // --- ВШИВАЕМ МЕТАДАННЫЕ ---
+    const blobWithMeta = await injectMetadata(outBlob, categoryText)
+
+    // --- ЧИСТОЕ ИМЯ ФАЙЛА (без префиксов) ---
     const fileName = `${promoName}_img-${index}.jpg`
 
+    // Скачивание
     if (typeof saveAs !== 'undefined') {
-      saveAs(outBlob, fileName)
+      saveAs(blobWithMeta, fileName)
     } else {
       const link = document.createElement('a')
-      link.href = URL.createObjectURL(outBlob)
+      link.href = URL.createObjectURL(blobWithMeta)
       link.download = fileName
       link.click()
       setTimeout(() => URL.revokeObjectURL(link.href), 1000)
     }
 
-    log(`${fileName}`)
     index++
     saved++
+    await new Promise(r => setTimeout(r, 300))
 
-    await new Promise(resolve => setTimeout(resolve, 300))
+    log(saved)
   }
 
-  if (saved === 0) {
-    log('Немає зображень для збереження.')
-  } else {
-    log(`\n✅ Done! ${saved} images sent to ${promoName}`)
-  }
+  logEl.textContent = ''
+  if (imgs.length) return log(`${saved > 1 ? saved + ' images' : saved + ' image'} saved ✅`)
+
 }
 
 document.getElementById('btn-download').addEventListener('click', downloadImagesFolder)
@@ -1289,36 +1307,27 @@ editor.addEventListener('paste', (e) => {
   const hasFiles = items.some(it => it.kind === 'file')
   const html = e.clipboardData?.getData('text/html') || ''
   const hasImgs = /<img\b[^>]*src=/i.test(html)
-  const hasDataURIs = /src=["']data:image\//i.test(html)
-
-  // Находим наш блок категорий
-  const categoryModal = document.querySelector('.category-wrap')
-
-  if (hasFiles || hasDataURIs) {
-    log('Вставлено зображення як файл/dataURL — все ок.')
-    if (categoryModal) categoryModal.classList.add('_show') // Показываем
-  } else if (hasImgs) {
-    log('Вставлено зображення як URL — спробуємо завантажити.')
-    if (categoryModal) categoryModal.classList.add('_show') // Показываем
-  } else {
-    log('Вставлено без зображень.')
-    // Если нужно скрывать обратно при вставке текста без фото:
-    if (categoryModal) categoryModal.classList.remove('_show')
+  if (hasFiles || hasImgs) {
+    logEl.textContent = ''
   }
 })
 
 function updateCategoryVisibility() {
   const categoryModal = document.querySelector('.category-wrap')
-  const hasImagesInEditor = editor.querySelectorAll('img').length > 0
+  const images = editor.querySelectorAll('img')
+  const count = images.length
 
-  if (hasImagesInEditor) {
+  logEl.textContent = ''
+
+  if (count > 0) {
+    const word = count === 1 ? 'image' : 'images'
+    log(`${count} ${word} ready to download ✅`)
     categoryModal.classList.add('_show')
   } else {
     categoryModal.classList.remove('_show')
   }
 }
 
-// Отслеживаем любые изменения в редакторе (удаление/добавление картинок)
 const observer = new MutationObserver(() => {
   updateCategoryVisibility()
 })
@@ -1378,8 +1387,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })
 
-  // Категории - використовуємо делегування для динамічних кнопок
-  // Категории - делегирование для динамических кнопок
   document.addEventListener('click', function (event) {
     const btn = event.target.closest('.category-wrap__link')
     if (btn) {
@@ -1417,12 +1424,33 @@ function isTouchDevice() {
   return 'ontouchstart' in window || navigator.maxTouchPoints
 }
 
-// Делегирование события клика
-// document.addEventListener('click', function (event) {
-//   if (event.target && event.target.classList.contains('category-wrap__link') ) {
+async function injectMetadata(blob, category) {
+  return new Promise((resolve) => {
+    const reader = new FileReader()
+    reader.onloadend = function () {
+      const base64Data = reader.result
 
-    
-//   }
-// })
+      // Слой 0th (IFD0) содержит основные теги
+      const zeroth = {}
+      // 270 — это стандартный тег ImageDescription (Описание)
+      zeroth[piexif.ImageIFD.ImageDescription] = category
 
+      const exifObj = { "0th": zeroth, "Exif": {}, "GPS": {} }
+      const exifBytes = piexif.dump(exifObj)
 
+      // Вшиваем метаданные в base64
+      const newBase64 = piexif.insert(exifBytes, base64Data)
+
+      // Превращаем обратно в Blob для скачивания
+      const byteString = atob(newBase64.split(',')[1])
+      const mimeString = newBase64.split(',')[0].split(':')[1].split(';')[0]
+      const ab = new ArrayBuffer(byteString.length)
+      const ia = new Uint8Array(ab)
+      for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i)
+      }
+      resolve(new Blob([ab], { type: mimeString }))
+    }
+    reader.readAsDataURL(blob)
+  })
+}
