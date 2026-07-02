@@ -655,7 +655,7 @@ input[type=number] {
   opacity: 0.5;
 }
 .main-btn._active::before {
-  background-position: 50% 50%;
+  background-position: 100% 50%;
   box-shadow: 0 0 2px #6BF8F9, 0 0 5px #DE46D4;
   animation: activePulse 2s linear infinite alternate;
   opacity: 1;

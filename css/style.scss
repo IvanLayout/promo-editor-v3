@@ -728,7 +728,7 @@ input[type=number] {
   }
 
   &._active::before {
-    background-position: 50% 50%;
+    background-position: 100% 50%;
     box-shadow: 0 0 2px $neon-blue, 0 0 5px $neon-pink;
 
     animation: activePulse 2s linear infinite alternate;
